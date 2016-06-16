@@ -40,13 +40,9 @@ class HypothesisAPI {
 		$response = \Httpful\Request::get($this->baseUrl . 'annotations/' . urlencode($id))
 			//->addHeader('Authorization', $token?"Bearer $token":null)
 			->send();
-		if ($response->code != '200') throw new Exception('Unexpected service response ' . $response->code);
+		//if ($response->code != '200') throw new Exception('Unexpected service response ' . $response->code);
 		return $response->body;
 	}
-}
-
-function hypothesis_search() {
-
 }
 
 function hypothesis_shortcode() {
@@ -54,14 +50,52 @@ function hypothesis_shortcode() {
 		$hypothesis = new HypothesisAPI();
 		$search_results = $hypothesis->search(array('user' => 'kris.shaffer'));
 		foreach($search_results as $key => $value) {
-			$output .= '<a href="';
-			$output .= $hypothesis->read($value->id)->uri;
-			$output .= '">';
-			$output .= $hypothesis->read($value->id)->document->title[0];
-			$output .= '</a>';
-			$output .= '<br/>';
+				// store annotation locally
+				$annotation_local = $hypothesis->read($value->id);
 
-			$output .= "<br/>";
+				// title of post with link to original post
+				$output .= '<a href="';
+				$output .= $annotation_local->uri;
+				$output .= '">';
+				$output .= $annotation_local->document->title[0];
+				$output .= '</a>';
+				$output .= '<br/><br/>';
+
+				// grab highlighted portion of post
+				if (in_array('selector', array_keys(get_object_vars($annotation_local->target[0])))) {
+						$selector = $annotation_local->target[0]->selector;
+						foreach($selector as $entry => $value) {
+								if (in_array('exact', array_keys(get_object_vars($value)))) {
+										$target_info = $value->exact;
+								} else {
+										$target_info = 'No highlighted text in this annotation.';
+								}
+						}
+				} else {
+						$target_info = 'No highlighted text in this annotation.';
+				}
+
+				// highlighted portion of post as blockquote
+				$output .= '<blockquote>';
+				$output .= $target_info;
+				$output .= '</blockquote><br/>';
+
+				// annotation comment, with username and link to stream
+				if ($annotation_local->text) {
+						$output .= $annotation_local->text;
+						$output .= '<br/>';
+
+				}
+				$account = $annotation_local->user;
+				$output .= 'Curated by <a href="';
+				$output .= "https://hypothes.is/stream?q=user:";
+				list($dump1, $account_name, $dump2) = split('[:@]', $account);
+				$output .= $account_name;
+				$output .= '">';
+				$output .= $account_name;
+				$output .= '</a>.<br/>';
+
+				$output .= "<br/><hr/><br/>";
 		}
 		return $output;
 }
