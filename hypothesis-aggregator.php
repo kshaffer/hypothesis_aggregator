@@ -54,7 +54,7 @@ function hypothesis_shortcode( $atts ) {
 		$output = '';
 		$hypothesis = new HypothesisAPI();
 		if ($hypothesis_atts['user'] == '' && $hypothesis_atts['tags'] == '' && $hypothesis_atts['text'] == '') {
-				return '<p>No search terms provided.</p>';
+				return '<p>No hypothes.is search terms provided.</p>';
 		} else {
 				if ($hypothesis_atts['user'] == '') {
 						if ($hypothesis_atts['tags'] == '') {
