@@ -1,14 +1,14 @@
 <?php
 /**
  * @package hypothesis_aggregator
- * @version 0.1
+ * @version 0.9
  */
 /*
 Plugin Name: hypothes.is aggregator
 Plugin URI: https://pushpullfork.com
 Description: This plugin establishes a [hypothesis] shortcode that will call the hypothes.is API and return results to embed in a page/post.
 Author: Kris Shaffer
-Version: 0.1
+Version: 0.9
 Author URI: http://kris.shaffermusic.com
 */
 
