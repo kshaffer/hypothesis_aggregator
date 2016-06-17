@@ -5,7 +5,7 @@
  */
 /*
 Plugin Name: hypothes.is aggregator
-Plugin URI: https://pushpullfork.com
+Plugin URI: https://github.com/kshaffer/hypothesis_aggregator
 Description: This plugin establishes a [hypothesis] shortcode that will call the hypothes.is API and return results to embed in a page/post.
 Author: Kris Shaffer
 Version: 0.9
