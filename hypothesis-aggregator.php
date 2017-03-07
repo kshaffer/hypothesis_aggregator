@@ -81,7 +81,7 @@ function hypothesis_shortcode( $atts ) {
 						$annotation_local = $hypothesis->read($value->id);
 
 						// title of post with link to original post
-						$output .= '<a href="';
+						$output .= '<a href="http://via.hypothes.is/';
 						$output .= $annotation_local->uri;
 						$output .= '">';
 						$output .= $annotation_local->document->title[0];
@@ -135,7 +135,7 @@ function hypothesis_shortcode( $atts ) {
 
 						}
 						$account = $annotation_local->user;
-						$output .= 'Curated by <a href="http://via.hypothes.is/';
+						$output .= 'Curated by <a href="';
 						$output .= "https://hypothes.is/stream?q=user:";
 						list($dump1, $account_name, $dump2) = split('[:@]', $account);
 						$output .= $account_name;
