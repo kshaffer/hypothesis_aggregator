@@ -137,7 +137,7 @@ function hypothesis_shortcode( $atts ) {
 						$account = $annotation_local->user;
 						$output .= 'Curated by <a href="';
 						$output .= "https://hypothes.is/stream?q=user:";
-						list($dump1, $account_name, $dump2) = explode('[:@]', $account);
+						list($dump1, $account_name, $dump2) = preg_split('/[:@]/', $account);
 						$output .= $account_name;
 						$output .= '">';
 						$output .= $account_name;
