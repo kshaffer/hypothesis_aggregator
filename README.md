@@ -1,6 +1,10 @@
 # Hypothesis Aggregator
 A WordPress plugin that allows you to aggregate Hypothes.is annotations on a single page or post on your WordPress blog.
 
+## Server Requirements
+Note that your WordPress server environment may need specific libraries and configuration to support this plugin. Known requirements are listed below, but this list may not be complete. You can investigate your WordPress server environment using something like a [phpinfo file](http://php.net/manual/en/function.phpinfo.php).
+1. [cURL for PHP](http://php.net/manual/en/book.curl.php): If a phpinfo file on your WordPress server doesn't show cURL support, then you need to figure out how to make cURL available on your server (a topic beyond the scope of this guide).
+
 ## Install
 1. Click “Clone or Download” (the green button on the right).
 2. Download to ZIP.
