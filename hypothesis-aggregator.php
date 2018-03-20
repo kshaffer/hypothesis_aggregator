@@ -89,9 +89,9 @@ function hypothesis_shortcode( $atts ) {
 						$output .= '<br/><br/>';
 
 						// grab post image from open graph or Twitter, if available
-						if (is_array($annotation_local->document->twitter->image)) {
+						if (isset($annotation_local->document->twitter->image)) {
 								$image_url = $annotation_local->document->twitter->image[0];
-								} elseif (is_array($annotation_local->document->facebook->image)) {
+							} elseif (isset($annotation_local->document->facebook->image)) {
 								if ($annotation_local->document->facebook->image[0] != 'https://s0.wp.com/i/blank.jpg') {
 										$image_url = $annotation_local->document->facebook->image[0];
 							} else {
@@ -100,7 +100,7 @@ function hypothesis_shortcode( $atts ) {
 						}
 
 						// add image to post, float right, max width 200px
-						if ($image_url) {
+						if (isset($image_url)) {
 								$output .= '<img style="float: right; margin 0 0 24px 24px; max-width: 200px" src="';
 								$output .= $image_url;
 								$output .= '" alt="';
